@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back2"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="20dp"
+        android:paddingBottom="30dp"
+        android:text="Converter Recursos"
+        android:textColor="#333333"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Moeda Origem -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Moeda Origem:"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <Spinner
+        android:id="@+id/spinnerOrigem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:padding="12dp" />
+
+    <!-- Moeda Destino -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Moeda Destino:"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <Spinner
+        android:id="@+id/spinnerDestino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:padding="12dp" />
+
+    <!-- Valor -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Valor a Converter:"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/etValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/edit_text"
+        android:hint="Digite o valor"
+        android:inputType="numberDecimal"
+        android:padding="12dp" />
+
+    <!-- ProgressBar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone" />
+
+    <!-- Resultado da Cotação -->
+    <TextView
+        android:id="@+id/tvResultado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text=""
+        android:textColor="#2196F3"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <!-- Botão Consultar Cotação -->
+    <Button
+        android:id="@+id/btnConsultarCotacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#2196F3"
+        android:text="Consultar Cotação"
+        android:textSize="18sp" />
+
+    <!-- Botão Confirmar Compra -->
+    <Button
+        android:id="@+id/btnConfirmarCompra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#4CAF50"
+        android:enabled="false"
+        android:text="Confirmar Compra"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+</LinearLayout>
