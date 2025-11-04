@@ -1,15 +1,92 @@
-*.iml
-.gradle
+# ============================================
+# Android Studio / IntelliJ Git Ignore
+# ============================================
+
+# Build directories
+/build/
+*/build/
+out/
+
+# Gradle
+.gradle/
+**/build/
+!gradle-wrapper.jar
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+/.gradle
+/caches/
+/gradle-app.setting
+gradle-app.setting
+
+# Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/httpRequests
+.idea/assetWizardSettings.xml
+
+# Keystore files
+*.jks
+*.keystore
+
+# Log and temp files
+*.log
+*.tmp
+*.temp
+
+# Generated files
+captures/
+.externalNativeBuild/
+.cxx/
+.navigation/
+
+# Android specific
+output.json
+*.apk
+*.ap_ 
+*.aab
+*.dex
+*.class
+*.jar
+*.war
+*.ear
+
+# MacOS
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# JetBrains
+.idea
+*.iws
+*.iml
+*.ipr
+
+# Kotlin/Java specific
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Google Services (API keys, Firebase configs, etc.)
+google-services.json
+GoogleService-Info.plist
+
+# Local environment settings
+.env
+*.local
+
