@@ -6,6 +6,20 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        android:textSize="16sp"
+        android:background="@android:color/transparent"
+        android:textColor="#2196F3"
+        android:drawableLeft="@android:drawable/ic_media_previous"
+        android:padding="8dp"
+        android:layout_gravity="start"
+        />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

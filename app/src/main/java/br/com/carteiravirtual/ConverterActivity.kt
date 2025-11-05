@@ -8,12 +8,14 @@ import androidx.lifecycle.lifecycleScope
 import br.com.carteiravirtual.api.RetrofitClient
 import br.com.carteiravirtual.model.Wallet
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.DecimalFormat
 
 class ConverterActivity : AppCompatActivity() {
 
+    private lateinit var btnVoltar: Button
     private lateinit var spinnerOrigem: Spinner
     private lateinit var spinnerDestino: Spinner
     private lateinit var etValor: EditText
@@ -39,6 +41,12 @@ class ConverterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_converter)
+
+
+        btnVoltar = findViewById(R.id.btnVoltar)
+        btnVoltar.setOnClickListener {
+            finish()  // Fecha a activity e volta para a MainActivity
+        }
 
         // Receber wallet da MainActivity
         wallet = Wallet(
@@ -179,41 +187,51 @@ class ConverterActivity : AppCompatActivity() {
             return
         }
 
-        // Verificar saldo novamente (segurança)
-        if (!verificarSaldo(cotacao.origem, cotacao.valorOrigem)) {
-            Toast.makeText(this, "Saldo insuficiente", Toast.LENGTH_LONG).show()
-            return
-        }
-
-        // Atualizar wallet
-        atualizarWallet(
-            cotacao.origem,
-            cotacao.destino,
-            cotacao.valorOrigem,
-            cotacao.valorDestino
-        )
-
-        // Mostrar confirmação
-        exibirConfirmacao(
-            cotacao.origem,
-            cotacao.destino,
-            cotacao.valorOrigem,
-            cotacao.valorDestino
-        )
-
-        // Retornar wallet atualizada para MainActivity
-        setResult(RESULT_OK, intent.apply {
-            putExtra("real", wallet.real)
-            putExtra("dolar", wallet.dolar)
-            putExtra("bitcoin", wallet.bitcoin)
-        })
-
-        // Desabilitar botão de confirmar (evitar duplo clique)
+        progressBar.visibility = View.VISIBLE
         btnConfirmarCompra.isEnabled = false
 
-        // Limpar campos
-        etValor.setText("")
-        ultimaCotacao = null
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            try {
+                // simula um delay de 1.5 segundos
+                delay(2000)
+
+                // Verificar saldo novamente (segurança)
+                if (!verificarSaldo(cotacao.origem, cotacao.valorOrigem)) {
+                    Toast.makeText(this@ConverterActivity, "Saldo insuficiente", Toast.LENGTH_LONG).show()
+                    return@launch
+                }
+
+                // Atualizar wallet
+                atualizarWallet(
+                    cotacao.origem,
+                    cotacao.destino,
+                    cotacao.valorOrigem,
+                    cotacao.valorDestino
+                )
+
+                // Mostrar confirmação
+                exibirConfirmacao(
+                    cotacao.origem,
+                    cotacao.destino,
+                    cotacao.valorOrigem,
+                    cotacao.valorDestino
+                )
+
+                // Retornar wallet atualizada para MainActivity
+                setResult(RESULT_OK, intent.apply {
+                    putExtra("real", wallet.real)
+                    putExtra("dolar", wallet.dolar)
+                    putExtra("bitcoin", wallet.bitcoin)
+                })
+
+                // Limpar campos
+                etValor.setText("")
+                ultimaCotacao = null
+            } finally {
+                progressBar.visibility = View.GONE
+            }
+        }
     }
 
     private suspend fun obterTaxaConversao(origem: Int, destino: Int): Double? {
